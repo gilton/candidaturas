@@ -1,9 +1,11 @@
 package org.labs.candidaturas.domain.entity;
 
+import javax.persistence.CascadeType;
 import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.OneToOne;
 
 import org.labs.candidaturas.domain.enums.Bandeira;
 
@@ -29,6 +31,8 @@ public class CartaoDeCredito {
 	private long numero;
 	private int codSeguraca;
 	private Bandeira bandeira;
+	
+	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	private Candidato candidado;
 	
 }
