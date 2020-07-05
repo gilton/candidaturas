@@ -2,7 +2,9 @@ package org.labs.candidaturas.domain.service.impl;
 
 import java.util.List;
 
+import org.labs.candidaturas.domain.dto.MensagemResponseDTO;
 import org.labs.candidaturas.domain.entity.Candidato;
+import org.labs.candidaturas.domain.exception.CandidatoNotFoundExceptional;
 import org.labs.candidaturas.domain.repository.CandidatoRepository;
 import org.labs.candidaturas.domain.service.interfaces.CandidatoServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,28 +21,42 @@ public class CandidatoService implements CandidatoServiceInterface {
 	
 
 	@Override
-	public String inserir(Candidato candidato) {
+	public MensagemResponseDTO inserir(Candidato candidato) {
 		repository.save(candidato);
-		return "Candidato de ID: "+candidato.getCandidatoId()+" adicionado com sucesso!"; 
+		 
+		return MensagemResponseDTO.builder()
+				.mensagem(String.format("Candidato de ID %s, adicionado com sucesso!", candidato.getCandidatoId()))
+				.build();
 	}
 
 	@Override
-	public String alterar(Long id, Candidato candidato) {
-		candidato.setCandidatoId(id);
+	public MensagemResponseDTO alterar(Long id, Candidato candidato) throws CandidatoNotFoundExceptional {
+		
+		Candidato candidatoRecuperado = repository.findById(id).orElseThrow(() -> new CandidatoNotFoundExceptional(id));
+		candidato.setCandidatoId(candidatoRecuperado.getCandidatoId());
+		
 		repository.saveAndFlush(candidato);
-		return "Candidato de ID: "+candidato.getCandidatoId()+" alterado com sucesso!";
+		
+		return MensagemResponseDTO.builder()
+				.mensagem(String.format("Candidato de ID %s, alterado com sucesso!",candidato.getCandidatoId()))
+				.build(); 
 	}
 
 	@Override
-	public String remover(Long id) {
-		Candidato candidato = findById(id);
+	public MensagemResponseDTO remover(Long id) throws CandidatoNotFoundExceptional {
+		Candidato candidato = repository.findById(id)
+				.orElseThrow(() -> new CandidatoNotFoundExceptional(id));
+		
 		repository.delete(candidato);
-		return "Candidato de ID: "+candidato.getCandidatoId()+" removido com sucesso!";
+
+		return MensagemResponseDTO.builder()
+				.mensagem(String.format("Candidato de ID %s, removido com sucesso!",candidato.getCandidatoId()))
+				.build(); 
 	}
 
 	@Override
-	public Candidato findById(Long id) {
-		return repository.findById(id).get();
+	public Candidato findById(Long id) throws CandidatoNotFoundExceptional {
+		return repository.findById(id).orElseThrow(() -> new CandidatoNotFoundExceptional(id));
 	}
 
 	@Override
