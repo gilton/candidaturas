@@ -20,11 +20,13 @@ import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
+import lombok.NoArgsConstructor;
 
 
 @Entity
 @Data
 @Builder
+@NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "candidatoId")
 public class Candidato {
@@ -52,7 +54,5 @@ public class Candidato {
 	@JoinColumn(name="cartaoId")
 	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private CartaoDeCredito cartaoDeCredito;
-	
-	public Candidato() {super();}
 	
 }
