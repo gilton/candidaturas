@@ -14,21 +14,22 @@ import javax.persistence.OneToOne;
 
 import org.labs.candidaturas.domain.enums.Nivel;
 
+import com.fasterxml.jackson.annotation.JsonIgnoreProperties;
+
 import lombok.AllArgsConstructor;
 import lombok.Builder;
 import lombok.Data;
 import lombok.EqualsAndHashCode;
-import lombok.NoArgsConstructor;
 
 
 @Entity
 @Data
 @Builder
-@NoArgsConstructor
 @AllArgsConstructor
 @EqualsAndHashCode(of = "candidatoId")
 public class Candidato {
-
+	
+	
 	@Id
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long candidatoId;
@@ -42,12 +43,16 @@ public class Candidato {
 	@Enumerated(EnumType.STRING)
 	private Nivel nivel;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	@JoinColumn(name="usuarioId")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private Usuario usuario;
 	
 	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
 	@JoinColumn(name="cartaoId")
+	@JsonIgnoreProperties({"hibernateLazyInitializer", "handler"})
 	private CartaoDeCredito cartaoDeCredito;
+	
+	public Candidato() {super();}
 	
 }
