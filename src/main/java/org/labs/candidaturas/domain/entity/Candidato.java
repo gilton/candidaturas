@@ -3,9 +3,13 @@ package org.labs.candidaturas.domain.entity;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
+import javax.persistence.FetchType;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.persistence.JoinColumn;
 import javax.persistence.OneToOne;
 
 import org.labs.candidaturas.domain.enums.Nivel;
@@ -35,12 +39,15 @@ public class Candidato {
 	private String nome;
 	private String skills;
 	
+	@Enumerated(EnumType.STRING)
 	private Nivel nivel;
 	
 	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+	@JoinColumn(name="usuarioId")
 	private Usuario usuario;
 	
-	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+	@OneToOne(fetch = FetchType.LAZY, cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
+	@JoinColumn(name="cartaoId")
 	private CartaoDeCredito cartaoDeCredito;
 	
 }

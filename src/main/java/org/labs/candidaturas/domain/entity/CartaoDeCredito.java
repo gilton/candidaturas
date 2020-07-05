@@ -1,11 +1,12 @@
 package org.labs.candidaturas.domain.entity;
 
-import javax.persistence.CascadeType;
+import javax.persistence.Column;
 import javax.persistence.Entity;
+import javax.persistence.EnumType;
+import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.persistence.OneToOne;
 
 import org.labs.candidaturas.domain.enums.Bandeira;
 
@@ -28,11 +29,14 @@ public class CartaoDeCredito {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long cartaoId;
 	
-	private long numero;
-	private int codSeguraca;
+	private String numero;
+	
+	@Column(name = "codigo", insertable = true, length = 5)
+	private int codigo;
+	
+	private String dataValidacao;
+	
+	@Enumerated(EnumType.STRING)
 	private Bandeira bandeira;
-	
-	@OneToOne(cascade = {CascadeType.PERSIST, CascadeType.MERGE, CascadeType.REMOVE})
-	private Candidato candidado;
-	
+		
 }
