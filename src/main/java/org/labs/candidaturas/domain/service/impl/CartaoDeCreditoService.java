@@ -2,7 +2,9 @@ package org.labs.candidaturas.domain.service.impl;
 
 import java.util.List;
 
+import org.labs.candidaturas.domain.dto.MensagemResponseDTO;
 import org.labs.candidaturas.domain.entity.CartaoDeCredito;
+import org.labs.candidaturas.domain.exception.CartaoDeCreditoNotFoundExceptional;
 import org.labs.candidaturas.domain.repository.CartaoDeCreditoRepository;
 import org.labs.candidaturas.domain.service.interfaces.CartaoDeCreditoServiceInterface;
 import org.springframework.beans.factory.annotation.Autowired;
@@ -19,28 +21,42 @@ public class CartaoDeCreditoService implements CartaoDeCreditoServiceInterface {
 	
 
 	@Override
-	public String inserir(CartaoDeCredito cartao) {
+	public MensagemResponseDTO inserir(CartaoDeCredito cartao) {
 		repository.save(cartao);
-		return "Cartão de Crédito de ID: "+cartao.getCartaoId()+" adicionado com sucesso!"; 
+		
+		return MensagemResponseDTO.builder()
+				.mensagem(String.format("Cartão de Crédito de ID %s, adicionado com sucesso!",cartao.getCartaoId()))
+				.build();
 	}
 
 	@Override
-	public String alterar(Long id, CartaoDeCredito cartao) {
-		cartao.setCartaoId(id);
+	public MensagemResponseDTO alterar(Long id, CartaoDeCredito cartao) throws CartaoDeCreditoNotFoundExceptional {
+		
+		CartaoDeCredito cartaoEncontrado = repository.findById(id)
+													.orElseThrow(() -> new CartaoDeCreditoNotFoundExceptional(id));
+		cartao.setCartaoId(cartaoEncontrado.getCartaoId());
+		
 		repository.saveAndFlush(cartao);
-		return "Cartão de Crédito de ID: "+cartao.getCartaoId()+" alterado com sucesso!";
+		
+		return MensagemResponseDTO.builder()
+				.mensagem(String.format("Cartão de Crédito de ID %s, alterado com sucesso!",cartao.getCartaoId()))
+				.build(); 
 	}
 
 	@Override
-	public String remover(Long id) {
-		CartaoDeCredito cartao = findById(id);
+	public MensagemResponseDTO remover(Long id) throws CartaoDeCreditoNotFoundExceptional {
+		CartaoDeCredito cartao = repository.findById(id)
+											.orElseThrow(() -> new CartaoDeCreditoNotFoundExceptional(id));
 		repository.delete(cartao);
-		return "Cartão de Crédito de ID: "+cartao.getCartaoId()+" removido com sucesso!";
+		
+		return MensagemResponseDTO.builder()
+				.mensagem(String.format("Cartão de Crédito de ID %s, removido com sucesso!",cartao.getCartaoId()))
+				.build(); 
 	}
 
 	@Override
-	public CartaoDeCredito findById(Long id) {
-		return repository.findById(id).get();
+	public CartaoDeCredito findById(Long id) throws CartaoDeCreditoNotFoundExceptional {
+		return repository.findById(id).orElseThrow(() -> new CartaoDeCreditoNotFoundExceptional(id));
 	}
 
 	@Override
