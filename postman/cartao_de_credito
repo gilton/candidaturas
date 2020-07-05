@@ -1,0 +1,24 @@
+{
+        "numero": "4716 7812 6734 0588",
+        "codigo": 725,
+        "dataValidacao": "05/03/2022",
+        "bandeira": "VISA"
+    },
+    {
+        "numero": "05448 9253 5332 2412 5",
+        "codigo": 957,
+        "dataValidacao": "04/07/2022",
+        "bandeira": "MASTERCARD"
+    },
+    {
+        "numero": "4916 5940 8627 4138",
+        "codigo": 435,
+        "dataValidacao": "05/09/2021",
+        "bandeira": "VISA"
+    },
+	}
+        "numero": "6062 8271 7161 4363",
+        "codigo": 112,
+        "dataValidacao": "05/04/2022",
+        "bandeira": "HIPERCARD"
+	}

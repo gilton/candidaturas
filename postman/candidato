@@ -1,0 +1,73 @@
+{
+    "nome": "Elizabeth III",
+    "cpf": "513.085.852-25",
+    "nivel": "AVANCADO",
+    "skills": "Window 7 Administration, Workstation 7, Workflow 10",
+    "celular": "(43) 96505-2972",
+    "usuario": {
+        "login": "eliza",
+        "senha": "abelhinha",
+        "email": "elizaweb@email.com"
+    },
+    "cartaoDeCredito": {
+        "numero": "6062 8271 7161 4363",
+        "codigo": 112,
+        "dataValidacao": "05/04/2022",
+        "bandeira": "HIPERCARD"
+    }
+},
+{
+    "nome": "Regina Alba Guimalhães",
+    "cpf": "013.694.845-69",
+    "nivel": "AVANCADO",
+    "skills": "Química Industrial em Açucar",
+    "celular": "(16) 96791-3467",
+    "usuario": {
+        "login": "reggei",
+        "senha": "reggei123",
+        "email": "regin@email.com"
+    },
+    "cartaoDeCredito": {
+        "numero": "5382 9485 6296 1836",
+        "codigo": 525,
+        "dataValidacao": "05/06/2022",
+        "bandeira": "MASTERCARD"
+    }
+},
+{
+    "nome": "Jão Dias do Santos",
+    "cpf": "019.530.984-79",
+    "nivel": "BASICO",
+    "skills": "Word, Excel, Powerpoint, Whatsapp",
+    "celular": "(82) 93302-9136",
+    "usuario": {
+        "login": "jaojao",
+        "senha": "jao123",
+        "email": "jaotop@email.com"
+    },
+    "cartaoDeCredito": {
+        "numero": "4716 6676 9282 0288",
+        "codigo": 765,
+        "dataValidacao": "05/07/2021",
+        "bandeira": "VISA"
+    }
+},
+{
+    "nome": "Pedro Pedrosa Malta",
+    "cpf": "654.783.264-37",
+    "nivel": "JUNIOR",
+    "skills": "Word, Excel, Skype, Linux, Redes",
+    "celular": "(14) 90512-8224",
+    "usuario": {
+        "login": "ppmalta",
+        "senha": "pedra123",
+        "email": "ppmalta@email.com"
+    },
+    "cartaoDeCredito": {
+        "numero": "6062 8262 7621 8997",
+        "codigo": 886,
+        "dataValidacao": "05/12/2021",
+        "bandeira": "HIPERCARD"
+    }
+}
+
