@@ -18,7 +18,7 @@ import lombok.AllArgsConstructor;
 
 
 @RestController
-@RequestMapping("/candidato")
+@RequestMapping("/api/v1/candidatos")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class CandidatoController {
 	
@@ -38,19 +38,15 @@ public class CandidatoController {
 	public String remover(@PathVariable Long id) {
 		return service.remover(id);
 	}
-
 	
 	@GetMapping("/{id}")
 	public Candidato findById(@PathVariable Long id) {
 		return service.findById(id);
 	}
-
 	
 	@GetMapping
 	public List<Candidato> findAll() {
 		return service.findAll();
 	}
-	
-	
 	
 }
