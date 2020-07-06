@@ -4,8 +4,7 @@ import javax.persistence.Entity;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
-import javax.validation.constraints.Max;
-import javax.validation.constraints.Min;
+import javax.validation.constraints.Email;
 import javax.validation.constraints.NotEmpty;
 import javax.validation.constraints.NotNull;
 import javax.validation.constraints.Size;
@@ -32,11 +31,11 @@ public class Usuario {
 	private String login;
 	
 	@NotNull
-	@Min(value = 4, message = "Senha precisa ter no mínimo 4 caracteres")
-    @Max(value = 18, message = "Senha precisa ter no máximo 18 caracteres")
+	@Size(min = 4, max = 18)
 	private String senha;
 	
 	@NotNull
+	@Email
 	@Size(max = 200)
 	private String email;
 	
