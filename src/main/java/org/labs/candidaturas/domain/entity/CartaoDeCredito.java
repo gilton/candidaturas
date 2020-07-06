@@ -7,6 +7,8 @@ import javax.persistence.Enumerated;
 import javax.persistence.GeneratedValue;
 import javax.persistence.GenerationType;
 import javax.persistence.Id;
+import javax.validation.constraints.NotEmpty;
+import javax.validation.constraints.NotNull;
 
 import org.labs.candidaturas.domain.enums.Bandeira;
 
@@ -29,11 +31,14 @@ public class CartaoDeCredito {
     @GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long cartaoId;
 	
+	@NotEmpty
 	private String numero;
 	
+	@NotNull
 	@Column(name = "codigo", insertable = true, length = 5)
 	private int codigo;
 	
+	@NotNull
 	private String dataValidacao;
 	
 	@Enumerated(EnumType.STRING)
