@@ -2,6 +2,8 @@ package org.labs.candidaturas.domain.controller;
 
 import java.util.List;
 
+import javax.validation.Valid;
+
 import org.labs.candidaturas.domain.dto.MensagemResponseDTO;
 import org.labs.candidaturas.domain.entity.CartaoDeCredito;
 import org.labs.candidaturas.domain.exception.CartaoDeCreditoNotFoundExceptional;
@@ -18,6 +20,9 @@ import org.springframework.web.bind.annotation.RequestMapping;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
+import io.swagger.annotations.ApiOperation;
+import io.swagger.annotations.ApiResponse;
+import io.swagger.annotations.ApiResponses;
 import lombok.AllArgsConstructor;
 
 
@@ -30,29 +35,39 @@ public class CartaoDeCreditoController {
 	
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	public MensagemResponseDTO inserir(@RequestBody CartaoDeCredito cartaoDeCredito) {
+	@ApiOperation("Adiciona um cartão de crédito")
+    @ApiResponses(value = {@ApiResponse(code = 201, message = "Cartão de crédito adicionado com sucesso")})
+	public MensagemResponseDTO inserir(@Valid @RequestBody CartaoDeCredito cartaoDeCredito) {
 		return service.inserir(cartaoDeCredito);
 	}
 
 	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	public MensagemResponseDTO alterar(@PathVariable Long id, @RequestBody CartaoDeCredito cartaoDeCredito) throws CartaoDeCreditoNotFoundExceptional {
+	@ApiOperation("Altera um cartão de crédito")
+	@ApiResponses(value = {@ApiResponse(code = 200, message = "Cartão de crédito alterado com sucesso")})
+	public MensagemResponseDTO alterar(@PathVariable Long id, @Valid @RequestBody CartaoDeCredito cartaoDeCredito) throws CartaoDeCreditoNotFoundExceptional {
 		return service.alterar(id, cartaoDeCredito);
 	}
 
 	@DeleteMapping("{id}")
 	@ResponseStatus(HttpStatus.GONE)
+	@ApiOperation("Remover um cartão de crédito")
+	@ApiResponses(value = {@ApiResponse(code = 410, message = "Cartão de crédito removido com sucesso")})
 	public MensagemResponseDTO remover(@PathVariable Long id) throws CartaoDeCreditoNotFoundExceptional {
 		return service.remover(id);
 	}
 	
 	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
+	@ApiOperation("Retorna um cartão de crédito")
+	@ApiResponses(value = {@ApiResponse(code = 200, message = "Cartão de crédito encontrado com sucesso")})
 	public CartaoDeCredito findById(@PathVariable Long id) throws CartaoDeCreditoNotFoundExceptional {
 		return service.findById(id);
 	}
 	
 	@GetMapping
+	@ApiOperation("Retorna todos os cartões de créditos")
+	@ApiResponses(value = {@ApiResponse(code = 200, message = "Cartões de créditos encontrados com sucesso")})
 	public List<CartaoDeCredito> findAll() {
 		return service.findAll();
 	}
