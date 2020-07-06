@@ -86,8 +86,8 @@ mvn spring-boot:run
 
 * [Postman Collection](https://www.getpostman.com/collections/18aa0b386ab87381d9e9) - online, formato json
 * [Postman Collection](https://github.com/gilton/candidaturas/tree/master/postman) - offline, formato txt
-* [Diagrama de Caso de Uso](https://github.com/gilton/candidaturas/blob/master/diagrams/UseCase0.png) - abstração versão 02
-* [Diagrama de Classe](https://github.com/gilton/candidaturas/blob/master/diagrams/classDiagram.png) - abstração versão 02
+* [Diagrama de Caso de Uso](https://github.com/gilton/candidaturas/blob/master/diagrams/UseCase0.png) - abstração versão 02.01
+* [Diagrama de Classe](https://github.com/gilton/candidaturas/blob/master/diagrams/classDiagram.png) - abstração versão 02.00
 * [Swagger](http://localhost:8080/swagger-ui.html) - `http://localhost:8080/swagger-ui.html`- Documentação e Testes **[não testado]**
 
 
