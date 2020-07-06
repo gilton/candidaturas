@@ -37,7 +37,7 @@ public class Candidato {
 	
 	
 	@Id
-    @GeneratedValue(strategy = GenerationType.IDENTITY)
+	@GeneratedValue(strategy = GenerationType.IDENTITY)
 	private Long candidatoId;
 	
 	@NotEmpty
