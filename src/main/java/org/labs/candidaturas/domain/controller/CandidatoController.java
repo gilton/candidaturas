@@ -36,7 +36,7 @@ public class CandidatoController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation("Adiciona um candidato")
-    @ApiResponses(value = {@ApiResponse(code = 201, message = "Candidato adicionado com sucesso")})
+	@ApiResponses(value = {@ApiResponse(code = 201, message = "Candidato adicionado com sucesso")})
 	public MensagemResponseDTO inserir(@Valid @RequestBody Candidato candidato) {
 		return service.inserir(candidato);
 	}

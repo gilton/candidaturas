@@ -36,7 +36,7 @@ public class UsuarioController {
 	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
 	@ApiOperation("Adiciona um usuário")
-    @ApiResponses(value = {@ApiResponse(code = 201, message = "Usuário adicionado com sucesso")})
+	@ApiResponses(value = {@ApiResponse(code = 201, message = "Usuário adicionado com sucesso")})
 	public MensagemResponseDTO inserir(@Valid @RequestBody Usuario user) {
 		return service.inserir(user);
 	}
