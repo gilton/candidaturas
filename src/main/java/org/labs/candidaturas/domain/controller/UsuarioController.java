@@ -10,13 +10,10 @@ import org.labs.candidaturas.domain.exception.UsuarioNotFoundExceptional;
 import org.labs.candidaturas.domain.service.impl.UsuarioService;
 import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.HttpStatus;
-import org.springframework.web.bind.annotation.DeleteMapping;
-import org.springframework.web.bind.annotation.GetMapping;
 import org.springframework.web.bind.annotation.PathVariable;
-import org.springframework.web.bind.annotation.PostMapping;
-import org.springframework.web.bind.annotation.PutMapping;
 import org.springframework.web.bind.annotation.RequestBody;
 import org.springframework.web.bind.annotation.RequestMapping;
+import org.springframework.web.bind.annotation.RequestMethod;
 import org.springframework.web.bind.annotation.ResponseStatus;
 import org.springframework.web.bind.annotation.RestController;
 
@@ -27,47 +24,47 @@ import lombok.AllArgsConstructor;
 
 
 @RestController
-@RequestMapping("/api/v1/usuarios")
+@RequestMapping("/api/v1/usuario")
 @AllArgsConstructor(onConstructor = @__(@Autowired))
 public class UsuarioController {
 	
 	private UsuarioService service;
 
-	@PostMapping
 	@ResponseStatus(HttpStatus.CREATED)
-	@ApiOperation("Adiciona um usuário")
+	@RequestMapping(path = "/add", method = RequestMethod.POST)
 	@ApiResponses(value = {@ApiResponse(code = 201, message = "Usuário adicionado com sucesso")})
+	@ApiOperation("Adiciona um usuário")
 	public MensagemResponseDTO inserir(@Valid @RequestBody Usuario user) {
 		return service.inserir(user);
 	}
 
-	@PutMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	@ApiOperation("Altera um usuário")
+	@RequestMapping(path = "/update/{id}", method = RequestMethod.PUT)
 	@ApiResponses(value = {@ApiResponse(code = 200, message = "Usuário alterado com sucesso")})
+	@ApiOperation("Altera um usuário")
 	public MensagemResponseDTO alterar(@PathVariable Long id, @Valid @RequestBody Usuario user) throws UsuarioNotFoundExceptional {
 		return service.alterar(id, user);
 	}
 
-	@DeleteMapping("{id}")
 	@ResponseStatus(HttpStatus.GONE)
-	@ApiOperation("Remove um usuário")
+	@RequestMapping(path = "/delete/{id}", method = RequestMethod.DELETE)
 	@ApiResponses(value = {@ApiResponse(code = 410, message = "Usuário removido com sucesso")})
+	@ApiOperation("Remove um usuário")
 	public MensagemResponseDTO remover(@PathVariable Long id) throws UsuarioNotFoundExceptional {
 		return service.remover(id);
 	}
 
-	@GetMapping("/{id}")
 	@ResponseStatus(HttpStatus.OK)
-	@ApiOperation("Retorna um usuário")
+	@RequestMapping(path = "/find/{id}", method = RequestMethod.GET)
 	@ApiResponses(value = {@ApiResponse(code = 200, message = "Usuário encontrado com sucesso")})
+	@ApiOperation("Retorna um usuário")
 	public Usuario findById(@PathVariable Long id) throws UsuarioNotFoundExceptional {
 		return service.findById(id);
 	}
 	
-	@GetMapping
-	@ApiOperation("Retorna todos os usuários")
+	@RequestMapping(path = "/list", method = RequestMethod.GET)
 	@ApiResponses(value = {@ApiResponse(code = 200, message = "Candidatos encontrados com sucesso")})
+	@ApiOperation("Retorna todos os usuários")
 	public List<Usuario> findAll() {
 		return service.findAll();
 	}
